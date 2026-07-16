@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    {% block title %}
+      Todo List
+    {% endblock %}
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="{% static 'tasks/styles.css' %}"
+  >
+</head>
+
+<body>
+  <div class="page-container">
+
+    <aside class="sidebar">
+      <h2 class="sidebar-title">
+        Todo
+      </h2>
+
+      <nav class="sidebar-nav">
+        <a
+          class="sidebar-link"
+          href="{% url 'tasks:task-list' %}"
+        >
+          Home
+        </a>
+
+        <a
+          class="sidebar-link"
+          href="{% url 'tasks:tag-list' %}"
+        >
+          Tags
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+  </div>
+</body>
+</html>
