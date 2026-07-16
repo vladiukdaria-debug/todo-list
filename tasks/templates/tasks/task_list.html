@@ -1,0 +1,132 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}
+  Todo List
+{% endblock %}
+
+{% block content %}
+
+  <div class="page-header">
+    <h1 class="page-title">
+      Todo List
+    </h1>
+
+    <a
+      class="button button-add"
+      href="{% url 'tasks:task-create' %}"
+    >
+      Add task
+    </a>
+  </div>
+
+  <div class="task-list">
+
+    {% for task in task_list %}
+
+      <article
+        class="
+          task-card
+          {% if task.is_done %}
+            task-card-done
+          {% endif %}
+        "
+      >
+        <div class="task-top">
+          <div>
+            <h2 class="task-content">
+              {{ task.content }}
+            </h2>
+
+            <p class="task-information">
+              Created:
+              {{ task.created_at|date:"d.m.Y H:i" }}
+            </p>
+
+            {% if task.deadline %}
+              <p class="task-information">
+                Deadline:
+                {{ task.deadline|date:"d.m.Y H:i" }}
+              </p>
+            {% endif %}
+
+            <p class="task-information">
+              Status:
+
+              {% if task.is_done %}
+                <span class="task-status status-done">
+                  Done
+                </span>
+              {% else %}
+                <span class="task-status status-not-done">
+                  Not done
+                </span>
+              {% endif %}
+            </p>
+
+            <div class="task-information">
+              Tags:
+
+              <div class="tag-list">
+                {% for tag in task.tags.all %}
+                  <span class="tag">
+                    {{ tag.name }}
+                  </span>
+                {% empty %}
+                  <span>No tags</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-actions">
+          <a
+            class="button button-update"
+            href="{% url 'tasks:task-update' task.pk %}"
+          >
+            Update
+          </a>
+
+          <a
+            class="button button-delete"
+            href="{% url 'tasks:task-delete' task.pk %}"
+          >
+            Delete
+          </a>
+
+          <form
+            method="post"
+            action="{% url 'tasks:task-toggle' task.pk %}"
+          >
+            {% csrf_token %}
+
+            {% if task.is_done %}
+              <button
+                class="button button-undo"
+                type="submit"
+              >
+                Undo
+              </button>
+            {% else %}
+              <button
+                class="button button-complete"
+                type="submit"
+              >
+                Complete
+              </button>
+            {% endif %}
+          </form>
+        </div>
+      </article>
+
+    {% empty %}
+
+      <div class="empty-message">
+        There are no tasks yet.
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+{% endblock %}
