@@ -1,26 +1,22 @@
-# Todo List
+Todo List
 
 Todo List is a Django web application for managing tasks and tags.
 
-## Features
-
-* Create tasks
-* Update tasks
-* Delete tasks
-* Mark tasks as completed or not completed
-* Set deadlines for tasks
-* Create and manage tags
-* Assign tags to tasks
-
-## Technologies
-
-* Python
-* Django
-* HTML
-* CSS
-* Bootstrap
-
-## Installation
+Features
+Create tasks
+Update tasks
+Delete tasks
+Mark tasks as completed or not completed
+Set deadlines for tasks
+Create and manage tags
+Assign tags to tasks
+Technologies
+Python
+Django
+HTML
+CSS
+Bootstrap
+Installation
 
 Clone the repository:
 
@@ -30,9 +26,23 @@ Go to the project directory:
 
 cd todo-list
 
+Create a virtual environment:
+
+python -m venv venv
+
+Activate the virtual environment in PowerShell:
+
+.\venv\Scripts\Activate.ps1
+
 Install dependencies:
 
 pip install -r requirements.txt
+
+Set environment variables in PowerShell:
+
+$env:SECRET_KEY="django-insecure-development-key"
+
+$env:DEBUG="True"
 
 Run migrations:
 
@@ -42,6 +52,6 @@ Start the development server:
 
 python manage.py runserver
 
-## Project Description
+Project Description
 
 This project allows users to manage their daily tasks in a simple and convenient way. Users can create, edit and delete tasks, mark them as completed, set deadlines and organize tasks using tags.
