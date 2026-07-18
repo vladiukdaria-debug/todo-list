@@ -28,7 +28,7 @@ urlpatterns = [
     ),
     path(
         "tasks/<int:pk>/toggle/",
-        views.toggle_task_status,
+        views.ToggleTaskStatusView.as_view(),
         name="task-toggle",
     ),
     path(
